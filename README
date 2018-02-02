@@ -1,0 +1,62 @@
+This is an optimized version of the IIS reference mpeg layer 3 encoder.
+The optimizations were made by Andreas Johansson.
+
+The encoder reads wav files or raw PCM files and produces mpeg player 3
+files. Right now joint-stereo or psychoachoustic model 1 are not
+supported with layer 3. To encode the file audio.wav to a 128kbit/s mpeg
+layer 3 file called audio.mp3, use this command line:
+
+encode audio.wav audio.mp3
+
+Use the software at your own risk.
+
+The most recent version of this software is available via ftp at:
+wopr.campus.luth.se:/pub/mpeg_layer_3
+
+CHANGES
+
+Version 1.02a
+-------------
+
+- Added LICENCE file to enable Debian packaging of the encoder.
+- Fixed in binary tables for layer II so it works again.
+
+Version 1.02
+------------
+
+Note: Default raw data byte order has changed from little endian
+----- to big endian with this version. This was supposed to be
+      done in version 1.01, but never verified. Use option -L if
+      you would like to encode little endian raw data files.
+
+- Bugfix, too small malloc(), was in original iso code
+- Bugfix, wav detection was totally corrupt!
+- Bugfix, encoder was not working very well on big endian machines.
+   Verified on solaris/sparc.
+- Max filename size changed from 80 to 256 characters
+- Option '-L' added, selects little endian raw PCM data, default
+   being big endian data. Wav's are always little endian.
+- Default bitrate is now 128kbit
+- Filename "-" means use standard-in as instream instead of a file
+- Removed some old crap in the archive
+- Some cosmetic changes, e.g. progress meter
+- Some speedups (~25% quicker) merged from Mike Cheng's LAMER encoder:
+   o new fft
+   o huffman encoding
+   o filter subband optimizations (work by Stephane Tavenard)
+   o sparse matrix for 44.1kHz in L3psychi_anal()
+   o mdct
+- Tables compiled into binary - tables directory not needed any more
+
+Thanks to everyone you have contributed with patches and suggestions!
+
+Version 1.01
+------------
+
+- Bugfix for digital unix, avioded malloc(0)
+- Byteswapped raw mode is working again
+- Changed defaults to layer III and psychoacoustic mode 2
+- Removed my Makefile and configure cache
+- Changed Makefile.in to compile with "better" optmization
+
+Please send your comments to: ajo@wopr.campus.luth.se

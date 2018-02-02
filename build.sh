@@ -1,0 +1,1 @@
+gcc -O2 src/*.c -o mp3enc -lm
