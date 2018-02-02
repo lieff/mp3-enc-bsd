@@ -1,1 +1,1 @@
-gcc -O2 src/*.c -o mp3enc -lm
+gcc -O2 -DUNIX -DBS_FORMAT=BINARY src/*.c -o mp3enc -lm
